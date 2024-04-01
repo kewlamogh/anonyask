@@ -9,13 +9,13 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client["AnonyAsk"]
 col = db["questions"]
 
-def askQuestion(question: str, author: str):
+def askQuestion(question: str, subject: str):
     question = Question(
         text=question,
-        author=author
+        subject=subject
     )
     
-    col.insert_one(question.asdict())
+    res = col.insert_one(question.asdict())
+    return res
 
-    return question
 
