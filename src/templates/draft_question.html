@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AnonyAsk</title>
+
+        <link rel="stylesheet" href="../static/index.css">
+        <script src="../static/util.js"></script>
+    </head>
+    <body>
+        <h1>Ask a question</h1>      
+    
+        <form method="post" action = "/post">
+            <label for="subject">Subject</label><br>
+            <input type="text" id="subject" name="subject"><br>
+
+            <label for="text">Body</label><br>
+            <textarea id="text" name="text"></textarea>
+            <br>
+
+            <input type="submit" value="Submit" class = "submit_button">
+        </form>
+    </body>
+</html>
