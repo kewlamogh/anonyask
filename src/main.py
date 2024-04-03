@@ -7,12 +7,23 @@ app = flask.Flask(__name__)
 def home():
     return flask.render_template("index.html")
 
-@app.route("/post", methods = ['GET'])
+@app.route("/post", methods = ['POST'])
 def postQuestion():
-    author = flask.request.args['author']
-    text = flask.request.args['text']
+    text = flask.request.form.get('text')
+    subject = flask.request.form.get('subject')
+    res = api.askQuestion(text, subject)
 
-    return api.askQuestion(text, author).asdict()
+    return flask.redirect("/question/" + str(res.inserted_id))
+
+@app.route("/ask")
+def draftQuestion():
+    return flask.render_template("draft_question.html")
+
+@app.route("/question/<id>")
+def question(id):
+    question = api.getQuestion(id)
+
+    return "questions text: " + question.text
 
 if __name__ == '__main__':
     app.run()
