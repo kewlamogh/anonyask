@@ -6,9 +6,15 @@ class Question():
     date: datetime.date
     subject: str
 
-    def __init__(self,text, subject) -> None:
+    def __init__(self,text, subject, date = None) -> None:
         self.text = text
-        self.date = datetime.date.today()
+        
+        if date == None:
+            self.date = datetime.date.today()
+        else:
+            format = "%Y-%m-%d"
+            self.date = datetime.datetime.strptime(date, format).date()
+
         self.subject = subject
 
     def asdict(self):
