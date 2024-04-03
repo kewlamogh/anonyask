@@ -1,7 +1,6 @@
 import datetime
 
 class Question():
-    author: str
     text: str
     date: datetime.date
     subject: str
