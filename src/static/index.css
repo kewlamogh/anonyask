@@ -17,6 +17,10 @@ body {
     padding: 30px;
 }
 
+#date {
+  margin-top: 30px;
+}
+
 /* button credit: https://getcssscan.com/css-buttons-examples, by spltjs */
 button, .submit_button {
   background-color: #0a6bff;
