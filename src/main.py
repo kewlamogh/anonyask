@@ -23,7 +23,7 @@ def draftQuestion():
 def question(id):
     question = api.getQuestion(id)
 
-    return "questions text: " + question.text
+    return flask.render_template("view_question", subject = question.subject, text = question.text, )
 
 if __name__ == '__main__':
     app.run()
