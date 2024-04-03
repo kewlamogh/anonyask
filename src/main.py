@@ -21,7 +21,9 @@ def draftQuestion():
 
 @app.route("/question/<id>")
 def question(id):
-    return "questions id: " + id
+    question = api.getQuestion(id)
+
+    return "questions text: " + question.text
 
 if __name__ == '__main__':
     app.run()
