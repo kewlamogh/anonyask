@@ -9,12 +9,25 @@
     <script src="../static/util.js"></script>
 </head>
 <body>
-    <h1>Question: <span class = "posh">{{ subject }}</span>!</h1>
+    <h1>Question: <span class = "posh">{{ subject }}</span></h1>
 
     <div id="text">{{text}}</div>
 
     <br>
-    Date
+    Date:
     <span id="date" class = "posh">{{date}}</span>
+
+    <hr>
+
+    <div class = "hidden" id = "answerbox">
+        <form>
+            <textarea id="text" name="text"></textarea>
+            <br>
+
+            <input type="submit" value="Submit answer" class = "submit_button">
+        </form>
+    </div>
+
+    <button onclick = "document.getElementById('answerbox').style.display = 'block'; document.getElementById('answer_button').style.display = 'none'" id = "answer_button">Answer question</button>
 </body>
 </html>
