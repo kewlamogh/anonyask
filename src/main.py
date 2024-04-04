@@ -23,7 +23,14 @@ def draftQuestion():
 def question(id):
     question = api.getQuestion(id)
 
-    return flask.render_template("view_question.html", subject = question.subject, text = question.text, date = question.date)
+    if question == 404:
+        return flask.redirect("/404")
+    else:
+        return flask.render_template("view_question.html", subject = question.subject, text = question.text, date = question.date)
+
+@app.route("/404")
+def notfound():
+    return flask.render_template("404.html")
 
 if __name__ == '__main__':
     app.run()

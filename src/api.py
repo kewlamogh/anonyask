@@ -21,7 +21,10 @@ def askQuestion(question: str, subject: str):
 
 def getQuestion(questionID: str):
     doc = col.find_one({ "_id": ObjectId(questionID) })
-    q = Question(doc["text"], doc["subject"], doc["date"])
 
-    return q
+    if doc != None:
+        q = Question(doc["text"], doc["subject"], doc["date"])
+        return q
+    else:
+        return 404
 
