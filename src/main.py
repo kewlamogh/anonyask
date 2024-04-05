@@ -1,5 +1,7 @@
 import flask
 import api
+import datetime
+from classes import Answer
 
 app = flask.Flask(__name__)
 
@@ -26,11 +28,19 @@ def question(id):
     if question == 404:
         return flask.redirect("/404")
     else:
-        return flask.render_template("view_question.html", subject = question.subject, text = question.text, date = question.date)
+        return flask.render_template("view_question.html", subject = question.subject, text = question.text, date = question.date, id = id)
 
 @app.route("/404")
 def notfound():
     return flask.render_template("404.html")
+
+@app.route("/postAnswer", methods = [ 'POST' ])
+def postAnswer():
+    text = flask.request.form.get('text')
+    question = flask.request.form.get('question')
+
+    api.addAnswer(question, Answer(text, None))
+    return flask.redirect("/question/" + str(question))
 
 if __name__ == '__main__':
     app.run()

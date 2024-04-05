@@ -1,6 +1,6 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from classes import Question
+from classes import Question, Answer
 from bson.objectid import ObjectId
 
 uri = "mongodb+srv://cwaeht2:valistus@dlwork.qoesfcj.mongodb.net/?retryWrites=true&w=majority"
@@ -8,7 +8,8 @@ uri = "mongodb+srv://cwaeht2:valistus@dlwork.qoesfcj.mongodb.net/?retryWrites=tr
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
 db = client["AnonyAsk"]
-col = db["questions"]
+questions = db["questions"]
+answers = db["answers"]
 
 def askQuestion(question: str, subject: str):
     question = Question(
@@ -16,11 +17,11 @@ def askQuestion(question: str, subject: str):
         subject=subject
     )
     
-    res = col.insert_one(question.asdict())
+    res = questions.insert_one(question.asdict())
     return res
 
 def getQuestion(questionID: str):
-    doc = col.find_one({ "_id": ObjectId(questionID) })
+    doc = questions.find_one({ "_id": ObjectId(questionID) })
 
     if doc != None:
         q = Question(doc["text"], doc["subject"], doc["date"])
@@ -28,3 +29,6 @@ def getQuestion(questionID: str):
     else:
         return 404
 
+def addAnswer(questionID: str, answer: Answer):
+    answer.question = questionID
+    answers.insert_one(answer.asdict())

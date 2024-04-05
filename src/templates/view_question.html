@@ -20,9 +20,11 @@
     <hr>
 
     <div class = "hidden" id = "answerbox">
-        <form>
+        <form method = "post" action = "/postAnswer">
             <textarea id="text" name="text"></textarea>
             <br>
+
+            <input type = "hidden" name = "question" value = "{{id}}" />
 
             <input type="submit" value="Submit answer" class = "submit_button">
         </form>
