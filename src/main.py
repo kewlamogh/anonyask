@@ -32,5 +32,14 @@ def question(id):
 def notfound():
     return flask.render_template("404.html")
 
+@app.route("/postAnswer", methods = [ 'POST' ])
+def postAnswer():
+    text = flask.request.form.get('text')
+    question = flask.request.form.get('question')
+
+    api.addAnswer(question, text)
+    
+    return flask.redirect("/question/" + str(question))
+
 if __name__ == '__main__':
     app.run()
