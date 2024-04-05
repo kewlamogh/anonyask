@@ -31,5 +31,4 @@ def getQuestion(questionID: str):
 
 def addAnswer(questionID: str, answer: Answer):
     answer.question = questionID
-    
     answers.insert_one(answer.asdict())
