@@ -24,6 +24,7 @@ def draftQuestion():
 @app.route("/question/<id>")
 def question(id):
     question = api.getQuestion(id)
+    print(api.getAnswers(id))
 
     if question == 404:
         return flask.redirect("/404")

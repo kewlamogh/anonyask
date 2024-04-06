@@ -32,3 +32,13 @@ def getQuestion(questionID: str):
 def addAnswer(questionID: str, answer: Answer):
     answer.question = questionID
     answers.insert_one(answer.asdict())
+
+def getAnswers(questionID: str):
+    answers_cursor = answers.find({ "questionID" : questionID})
+    answers_list = []
+
+    for doc in answers_cursor:
+        print(doc)
+        answers_list.append(Answer(doc["text"], doc["date"]))
+
+    return answers_list
