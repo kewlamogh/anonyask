@@ -19,6 +19,16 @@
 
     <hr>
 
+    {%for i in answers%} 
+        <div class = "answer">
+            {{i.text}}
+            <br>
+            <span class="posh">Date: {{i.date}}</span>
+        </div>
+    {%endfor%} 
+
+    <hr>
+
     <div class = "hidden" id = "answerbox">
         <form method = "post" action = "/postAnswer">
             <textarea id="text" name="text"></textarea>
@@ -29,14 +39,6 @@
             <input type="submit" value="Submit answer" class = "submit_button">
         </form>
     </div>
-
-    {%for i in answers%} 
-        <div class = "answer">
-            {{i.text}}
-            <br>
-            <span class="posh">Date: {{i.date}}</span>
-        </div>
-    {%endfor%} 
 
     <button onclick = "document.getElementById('answerbox').style.display = 'block'; document.getElementById('answer_button').style.display = 'none'" id = "answer_button">Answer question</button>
 </body>
