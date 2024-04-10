@@ -24,12 +24,12 @@ def draftQuestion():
 @app.route("/question/<id>")
 def question(id):
     question = api.getQuestion(id)
-    print(api.getAnswers(id))
+    answers = [x.asdict() for x in api.getAnswers(id)]
 
     if question == 404:
         return flask.redirect("/404")
     else:
-        return flask.render_template("view_question.html", subject = question.subject, text = question.text, date = question.date, id = id)
+        return flask.render_template("view_question.html", subject = question.subject, text = question.text, date = question.date, id = id, answers = answers)
 
 @app.route("/404")
 def notfound():

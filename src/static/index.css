@@ -17,7 +17,19 @@ body {
     padding: 30px;
 }
 
+.answer {
+  border: 2px solid white;
+  padding: 30px;
+  margin-bottom: 30px;
+
+  display: block;
+}
+
 #date {
+  margin-top: 30px;
+}
+
+br {
   margin-top: 30px;
 }
 

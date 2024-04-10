@@ -33,5 +33,7 @@ class Answer():
             format = "%Y-%m-%d"
             self.date = datetime.datetime.strptime(date, format).date()
 
+        self.question = ""
+
     def asdict(self):
         return { 'text': self.text, 'date': str(self.date), 'questionID': self.question }
