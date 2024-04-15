@@ -46,3 +46,6 @@ def getAnswers(questionID: str):
 
 def reindex():
     questions.create_index("subject")
+
+def mostRecent(n):
+    return list(questions.find().sort('date', -1).limit(n))

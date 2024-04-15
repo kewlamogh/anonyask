@@ -6,7 +6,9 @@ app = flask.Flask(__name__)
 
 @app.route("/")
 def home():
-    return flask.render_template("index.html")
+    home_questions = api.mostRecent(5)
+    
+    return flask.render_template("index.html", home_questions = home_questions)
 
 @app.route("/post", methods = ['POST'])
 def postQuestion():
