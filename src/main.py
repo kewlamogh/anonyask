@@ -1,6 +1,5 @@
 import flask
 import api
-import datetime
 from classes import Answer
 
 app = flask.Flask(__name__)
