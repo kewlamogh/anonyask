@@ -19,6 +19,16 @@
 
     <hr>
 
+    {%for i in answers%} 
+        <div class = "answer">
+            {{i.text}}
+            <br>
+            <span class="posh">Date: {{i.date}}</span>
+        </div>
+    {%endfor%} 
+
+    <hr>
+
     <div class = "hidden" id = "answerbox">
         <form method = "post" action = "/postAnswer">
             <textarea id="text" name="text"></textarea>

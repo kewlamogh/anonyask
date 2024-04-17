@@ -17,6 +17,7 @@ def askQuestion(question: str, subject: str):
         subject=subject
     )
     
+    reindex()
     res = questions.insert_one(question.asdict())
     return res
 
@@ -42,3 +43,9 @@ def getAnswers(questionID: str):
         answers_list.append(Answer(doc["text"], doc["date"]))
 
     return answers_list
+
+def reindex():
+    questions.create_index("subject")
+
+def mostRecent(n):
+    return list(questions.find().sort('date', -1).limit(n))

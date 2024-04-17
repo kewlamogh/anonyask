@@ -19,5 +19,19 @@
     </ul>
 
     <button onclick="redirect('/ask')">Ask a question!</button>
+
+    <br>
+
+
+    <h1>Recently Posted</h1>
+
+    {%for i in home_questions%} 
+        <div class = "answer">
+            <a href = "/question/{{i._id}}"><h2>{{i.subject}}</h2></a>
+            {{i.text}}
+            <br>
+            <span class="posh">Date: {{i.date}}</span>
+        </div>
+    {%endfor%} 
 </body>
 </html>

@@ -1,13 +1,14 @@
 import flask
 import api
-import datetime
 from classes import Answer
 
 app = flask.Flask(__name__)
 
 @app.route("/")
 def home():
-    return flask.render_template("index.html")
+    home_questions = api.mostRecent(5)
+    
+    return flask.render_template("index.html", home_questions = home_questions)
 
 @app.route("/post", methods = ['POST'])
 def postQuestion():
@@ -24,12 +25,12 @@ def draftQuestion():
 @app.route("/question/<id>")
 def question(id):
     question = api.getQuestion(id)
-    print(api.getAnswers(id))
+    answers = [x.asdict() for x in api.getAnswers(id)]
 
     if question == 404:
         return flask.redirect("/404")
     else:
-        return flask.render_template("view_question.html", subject = question.subject, text = question.text, date = question.date, id = id)
+        return flask.render_template("view_question.html", subject = question.subject, text = question.text, date = question.date, id = id, answers = answers)
 
 @app.route("/404")
 def notfound():
